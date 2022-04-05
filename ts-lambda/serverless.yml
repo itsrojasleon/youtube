@@ -1,0 +1,22 @@
+service: hello
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+functions:
+  hello:
+    handler: src/hello.handler
+    events:
+      - httpApi: GET /hello
+
+custom:
+  esbuild:
+    bundle: true
+    minify: true
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
